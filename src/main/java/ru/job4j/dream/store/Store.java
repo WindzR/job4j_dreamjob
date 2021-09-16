@@ -2,7 +2,6 @@ package ru.job4j.dream.store;
 
 import ru.job4j.dream.model.Post;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Map;

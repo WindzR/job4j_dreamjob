@@ -4,13 +4,13 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Post {
-    private int ID;
+    private int id;
     private String name;
     private String description;
     private LocalDateTime created;
 
-    public Post(int ID, String name, String description, LocalDateTime created) {
-        this.ID = ID;
+    public Post(int id, String name, String description, LocalDateTime created) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.created = created;
@@ -18,11 +18,11 @@ public class Post {
 
 
     public int getID() {
-        return ID;
+        return id;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -54,11 +54,11 @@ public class Post {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Post post = (Post) o;
-        return ID == post.ID && name.equals(post.name);
+        return id == post.id && name.equals(post.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ID, name);
+        return Objects.hash(id, name);
     }
 }
