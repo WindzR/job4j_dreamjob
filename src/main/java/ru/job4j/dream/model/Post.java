@@ -9,6 +9,11 @@ public class Post {
     private String description;
     private LocalDateTime created;
 
+    public Post(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Post(int id, String name, String description, LocalDateTime created) {
         this.id = id;
         this.name = name;
@@ -16,11 +21,11 @@ public class Post {
         this.created = created;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
