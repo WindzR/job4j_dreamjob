@@ -8,5 +8,5 @@ Functionality:
 Technologies:
 * Servlets
 * JSP
-* Simple HTML/JS(JQueue|Ajax)/CSS
+* Simple HTML/JS(Jquery|Ajax)/CSS
 * JDBC
