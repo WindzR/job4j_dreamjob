@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
 <!doctype html>
 <html lang="en">
@@ -30,10 +30,11 @@
                 Кандидаты
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
                         <tr>
                             <th scope="col">Названия</th>
+                            <th scope="col">Фото</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,6 +45,13 @@
                                         <i class="fa fa-edit mr-3"></i>
                                     </a>
                                     <c:out value="${candidate.name}"/>
+                                </td>
+                                <td>
+                                    <img src="image/${candidate.id}.jpg" alt="тестовая картинка" class="img-thumbnail mx-auto" width="150px" height="150px">
+                                    <div>
+                                        <a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/upload.jsp" role="button">Добавить</a>
+                                        <button type="button" class="btn btn-warning btn-sm">Удалить</button>
+                                    </div>
                                 </td>
                             </tr>
                         </c:forEach>

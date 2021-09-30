@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
 <!doctype html>
 <html lang="en">
@@ -30,8 +30,8 @@
                 Вакансии
             </div>
             <div class="card-body">
-                <table class="table">
-                    <thead>
+                <table class="table table-striped table-bordered">
+                    <thead class="table-dark">
                     <tr>
                         <th scope="col">Названия</th>
                     </tr>
