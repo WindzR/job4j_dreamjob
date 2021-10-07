@@ -45,12 +45,16 @@
                                         <i class="fa fa-edit mr-3"></i>
                                     </a>
                                     <c:out value="${candidate.name}"/>
+                                    <div>
+                                        <form action="<c:url value='/candidates.do?id=${candidate.id}&action=delete'/>" method="post">
+                                            <button type="submit" class="btn btn-warning btn-sm">Удалить кандидата</button>
+                                        </form>
+                                    </div>
                                 </td>
                                 <td>
                                     <img src="image/${candidate.id}.jpg" alt="тестовая картинка" class="img-thumbnail mx-auto" width="150px" height="150px">
                                     <div>
-                                        <a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/upload.jsp" role="button">Добавить</a>
-                                        <button type="button" class="btn btn-warning btn-sm">Удалить</button>
+                                        <a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/upload.jsp" role="button">Загрузить фото</a>
                                     </div>
                                 </td>
                             </tr>

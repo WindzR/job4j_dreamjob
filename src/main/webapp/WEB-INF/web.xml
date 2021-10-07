@@ -28,7 +28,7 @@
   </servlet>
   <servlet>
     <servlet-name>UploadServlet</servlet-name>
-    <servlet-class>ru.job4j.servlet.UploadServlet</servlet-class>
+    <servlet-class>ru.job4j.dream.servlet.UploadServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

@@ -16,14 +16,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class UploadServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> images = new ArrayList<>();
-        for (File name : new File("с:\\images\\").listFiles()) {
-            images.add(name.getName());
+        for (File name : Objects.requireNonNull(new File("c:\\images\\").listFiles())) {
+            if (name.getName().contains("jpg")) {
+                images.add(name.getName());
+            }
         }
         req.setAttribute("images", images);
         RequestDispatcher dispatcher = req.getRequestDispatcher("/upload.jsp");

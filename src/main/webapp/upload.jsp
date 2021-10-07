@@ -23,7 +23,8 @@
         <tbody>
         <c:forEach items="${images}" var="image" varStatus="status">
             <tr valign="top">
-                <td><a href="<c:url value='/download?name=${image}'/>">
+                <td>
+                    <a href="<c:url value='/download?name=${image}'/>">
                         Download
                     </a>
                 </td>

@@ -48,6 +48,10 @@ public class Store {
         candidates.put(candidate.getId(), candidate);
     }
 
+    public void deleteCandidate(int id) {
+        candidates.remove(id);
+    }
+
     public Post findPostById(int id) {
         return posts.get(id);
     }
