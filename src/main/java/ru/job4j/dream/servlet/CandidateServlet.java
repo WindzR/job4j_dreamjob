@@ -1,7 +1,7 @@
 package ru.job4j.dream.servlet;
 
 import ru.job4j.dream.model.Candidate;
-import ru.job4j.dream.store.Store;
+import ru.job4j.dream.store.MemStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +14,7 @@ import java.util.Objects;
 public class CandidateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("candidates", Store.instOf().findAllCandidates());
+        req.setAttribute("candidates", MemStore.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 
@@ -25,7 +25,7 @@ public class CandidateServlet extends HttpServlet {
         if (action.equals("delete")) {
             doDelete(req, resp);
         } else {
-            Store.instOf().save(
+            MemStore.instOf().save(
                     new Candidate(
                             Integer.parseInt(req.getParameter("id")),
                             req.getParameter("name")
@@ -36,7 +36,7 @@ public class CandidateServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Store store = Store.instOf();
+        MemStore store = MemStore.instOf();
         int id = Integer.parseInt(req.getParameter("id"));
         store.deleteCandidate(id);
         File folder = new File("c:\\images\\");
