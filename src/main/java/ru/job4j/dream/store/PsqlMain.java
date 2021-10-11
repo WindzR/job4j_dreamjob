@@ -13,9 +13,9 @@ public class PsqlMain {
             System.out.println(post.getId() + " " + post.getName());
         }
         System.out.println("<----Найдем вакансию по ID = 1 ---->");
-        System.out.println(store.findById(1));
+        System.out.println(store.findPostById(1));
         System.out.println("<----Изменим вакансию по ID = 1 ---->");
         store.save(new Post(1, "Super Galactic Power Java Junior"));
-        System.out.println(store.findById(1));
+        System.out.println(store.findPostById(1));
     }
 }
