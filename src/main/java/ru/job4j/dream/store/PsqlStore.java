@@ -6,6 +6,7 @@ import ru.job4j.dream.model.Post;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import ru.job4j.dream.model.User;
 
 import java.io.InputStream;
 import java.sql.Connection;
@@ -82,6 +83,26 @@ public class PsqlStore implements Store {
             LOG.error("Exception in findAllCandidates method", e);
         }
         return candidates;
+    }
+
+    @Override
+    public Collection<User> findAllUsers() {
+        List<User> users = new ArrayList<>();
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users")
+        ) {
+            try (ResultSet it = ps.executeQuery()) {
+                while (it.next()) {
+                    users.add(new User(
+                            it.getInt("id"), it.getString("name"),
+                            it.getString("email"), it.getString("password")
+                    ));
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Exception in findAllUsers method", e);
+        }
+        return users;
     }
 
     @Override
@@ -164,6 +185,29 @@ public class PsqlStore implements Store {
         return candidate;
     }
 
+    @Override
+    public User findUserByEmail(String email) {
+        User user = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email LIKE (?)")
+        ) {
+            ps.setString(1, email);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    user = new User(
+                            resultSet.getInt("id"),
+                            resultSet.getString("name"),
+                            resultSet.getString("email"),
+                            resultSet.getString("password")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Exception in findUserByEmail method", e);
+        }
+        return user;
+    }
+
     public void save(Candidate candidate) {
         if (candidate.getId() == 0) {
             createCandidate(candidate);
@@ -198,6 +242,45 @@ public class PsqlStore implements Store {
             ps.execute();
         } catch (Exception e) {
             LOG.error("Exception in updateCandidate method", e);
+        }
+    }
+
+    @Override
+    public void save(User user) {
+        if (user.getId() == 0) {
+            createUser(user);
+        } else {
+            updateUser(user);
+        }
+    }
+
+    private void createUser(User user) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO users(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, user.getName());
+            ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    user.setId(id.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Exception in createUser method", e);
+        }
+    }
+
+    private void updateUser(User user) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("UPDATE users SET name=(?), email=(?), password=(?) WHERE id=(?)")
+        ) {
+            ps.setString(1, user.getName());
+            ps.setString(2, user.getEmail());
+            ps.setString(3, user.getPassword());
+            ps.setInt(4, user.getId());
+            ps.execute();
+        } catch (Exception e) {
+            LOG.error("Exception in updateUser method", e);
         }
     }
 
