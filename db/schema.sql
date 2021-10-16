@@ -14,3 +14,5 @@ CREATE TABLE IF NOT EXISTS users (
    email TEXT,
    password TEXT
 );
+
+ALTER TABLE users ADD UNIQUE(email);
