@@ -27,12 +27,9 @@ public class RegServlet extends HttpServlet {
         if (store.findUserByEmail(email) != null) {
             req.setAttribute("message", "Пользователь с таким email уже зарегистрирован");
             req.getRequestDispatcher("reg.jsp").forward(req, resp);
+        } else {
+            store.save(new User(0, name, email, password));
+            resp.sendRedirect(req.getContextPath() + "/auth.do");
         }
-        if (name.equals("") || email.equals("") || password.equals("")) {
-            req.setAttribute("error", "Заполните все поля!");
-            req.getRequestDispatcher("reg.jsp").forward(req, resp);
-        }
-        store.save(new User(0, name, email, password));
-        resp.sendRedirect(req.getContextPath() + "/auth.do");
     }
 }
