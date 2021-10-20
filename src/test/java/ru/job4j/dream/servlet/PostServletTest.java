@@ -1,6 +1,7 @@
 package ru.job4j.dream.servlet;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.hamcrest.core.Is;
 import org.junit.runner.RunWith;
@@ -23,6 +24,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+@Ignore
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(PsqlStore.class)
 public class PostServletTest {
