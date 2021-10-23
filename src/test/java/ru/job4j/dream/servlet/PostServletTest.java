@@ -5,6 +5,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.hamcrest.core.Is;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -19,27 +20,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
-@Ignore
-@RunWith(PowerMockRunner.class)
-@PrepareForTest(PsqlStore.class)
-public class PostServletTest {
-
-    @Test
-    public void whenCreatePost() throws ServletException, IOException {
-        Store store = MemStore.instOf();
-        PowerMockito.mockStatic(PsqlStore.class);
-        PowerMockito.when(PsqlStore.instOf()).thenReturn(store);
-        HttpServletRequest req = mock(HttpServletRequest.class);
-        HttpServletResponse resp = mock(HttpServletResponse.class);
-        PowerMockito.when(req.getParameter("id")).thenReturn("0");
-        PowerMockito.when(req.getParameter("name")).thenReturn("User1");
-        new PostServlet().doPost(req, resp);
-        Post rsl = store.findAllPosts().iterator().next();
-        Assert.assertThat(rsl.getName(), Is.is("User1"));
-    }
-}
+//@RunWith(PowerMockRunner.class)
+//@PrepareForTest(PsqlStore.class)
+//public class PostServletTest {
+//
+//    @Test
+//    public void whenCreatePost() throws ServletException, IOException {
+//        final PostServlet servlet = new PostServlet();
+//        final HttpServletRequest request = mock(HttpServletRequest.class);
+//        final HttpServletResponse response = mock(HttpServletResponse.class);
+//        String path = "/dream_job/posts.do";
+//        Store store = MemStore.instOf();
+//        PowerMockito.mockStatic(PsqlStore.class);
+//        Mockito.when(PsqlStore.instOf()).thenReturn(store);
+//        when(request.getParameter("id")).thenReturn("1");
+//        when(request.getParameter("name")).thenReturn("Post1");
+//        servlet.doPost(request, response);
+//        Post rsl = store.findAllPosts().iterator().next();
+//        assertThat(store.findPostById(1).getName(), is("Post1"));
+//        Assert.assertThat(rsl.getName(), Is.is("Post1"));
+//    }
+//}
