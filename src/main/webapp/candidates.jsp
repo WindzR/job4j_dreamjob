@@ -36,6 +36,7 @@
                         <tr>
                             <th scope="col">Названия</th>
                             <th scope="col">Фото</th>
+                            <th scope="col">Город</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -57,6 +58,9 @@
                                     <div>
                                         <a class="btn btn-primary btn-sm" href="<%=request.getContextPath()%>/upload.jsp" role="button">Загрузить фото</a>
                                     </div>
+                                </td>
+                                <td>
+                                    <label>Москва</label>
                                 </td>
                             </tr>
                         </c:forEach>

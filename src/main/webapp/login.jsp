@@ -16,6 +16,18 @@
             integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script>
+        function validate() {
+            checkField($('#email'));
+            checkField($('#password'));
+        }
+
+        function checkField(field) {
+            if (field.val() == '') {
+                alert(field.attr('title'));
+            }
+        }
+    </script>        
 
     <title>Биржа вакансий</title>
 </head>
@@ -31,27 +43,22 @@
                 <form action="<%=request.getContextPath()%>/auth.do" method="post">
                     <div class="form-group">
                         <label>Почта</label>
-                        <input type="text" class="form-control" required name="email">
+                        <input type="text" class="form-control" id="email" name="email">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" required name="password">
+                        <input type="password" class="form-control" id="password" name="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Войти</button>
-                    <c:if test="${not empty error}">
-                        <div style="color:red; font-weight: bold; margin: 30px 0;">
-                            ${error}
-                        </div>
-                    </c:if>
+                    <button type="submit" class="btn btn-primary" onclick="return validate();">Войти</button>
                 </form>
             </div>
             <div class="card-footer">
                 <ul class="nav">
                     <li class="nav-item">
-                        Регистрация нового пользователя :    
+                        Нет аккаунта? :    
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-link btn-sm" href="<%=request.getContextPath()%>/reg.do" role="button">Зарегистрироваться</a>
+                        <a class="btn btn-link btn-sm" href="<%=request.getContextPath()%>/reg.do" role="button">Зарегистрироваться!</a>
                     </li>
                 </ul>
             </div>

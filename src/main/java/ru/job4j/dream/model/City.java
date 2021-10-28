@@ -2,8 +2,22 @@ package ru.job4j.dream.model;
 
 import java.util.Objects;
 
-public class Email {
+public class City {
+    private int id;
     private String name;
+
+    public City(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -21,19 +35,20 @@ public class Email {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Email email = (Email) o;
-        return name.equals(email.name);
+        City city = (City) o;
+        return id == city.id && name.equals(city.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
-        return "Email{"
-                + "name='" + name + '\''
+        return "City{"
+                + "id=" + id
+                + ", name='" + name + '\''
                 + '}';
     }
 }

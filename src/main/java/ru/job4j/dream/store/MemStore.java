@@ -1,5 +1,6 @@
 package ru.job4j.dream.store;
 
+import ru.job4j.dream.model.City;
 import ru.job4j.dream.model.Post;
 import ru.job4j.dream.model.Candidate;
 import ru.job4j.dream.model.User;
@@ -87,6 +88,11 @@ public class MemStore implements Store {
     }
 
     @Override
+    public City findCityByName(String name) {
+        return null;
+    }
+
+    @Override
     public Collection<Post> findAllPosts() {
         return posts.values();
     }
@@ -99,5 +105,20 @@ public class MemStore implements Store {
     @Override
     public Collection<User> findAllUsers() {
         return users.values();
+    }
+
+    @Override
+    public Collection<City> findAllCities() {
+        return null;
+    }
+
+    @Override
+    public Collection<Candidate> findCandidatesLastDay() {
+        return null;
+    }
+
+    @Override
+    public Collection<Post> findPostLastDay() {
+        return null;
     }
 }

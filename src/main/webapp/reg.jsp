@@ -19,6 +19,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
+    <script>
+        function validate() {
+            checkField($('#name'));
+            checkField($('#email'));
+            checkField($('#password'));
+        }
+
+        function checkField(field) {
+            if (field.val() == '') {
+                alert(field.attr('title'));
+            }
+        }
+    </script>
 
     <title>Биржа вакансий</title>
 </head>
@@ -32,23 +45,28 @@
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/reg.do" method="post">
                     <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" class="form-control" required name="name">
+                        <label>Введите имя :</label>
+                        <input type="text" class="form-control" id="name" name="name">
                     </div>
                     <div class="form-group">
-                        <label>Почта</label>
-                        <input type="text" class="form-control" required name="email">
+                        <label for="inputCity">Выберите город :</label>
+                        <select id="city" class="form-control">
+                            <option selected>Ваш город...</option>
+                            <option>Москва</option>
+                            <option>Санкт-Петербург</option>
+                            <option>Нижний Новгород</option>
+                            <option>Казань</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <label>Пароль</label>
-                        <input type="text" class="form-control" required name="password">
+                        <label>Введите почту :</label>
+                        <input type="email" class="form-control" id="email" name="email">
                     </div>
-                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-                    <c:if test="${not empty error}">
-                        <div style="color:#ff0000; font-weight: bold; margin: 30px 0;">
-                            <c:out value="${error}"/>
-                        </div>
-                    </c:if>
+                    <div class="form-group">
+                        <label>Введите пароль :</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="return validate();">Зарегистрироваться</button>
                 </form>
             </div>
         </div>
