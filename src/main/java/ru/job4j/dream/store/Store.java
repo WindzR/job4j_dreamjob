@@ -16,6 +16,8 @@ public interface Store {
 
     Collection<City> findAllCities();
 
+    City findCityById(int id);
+
     Collection<Candidate> findCandidatesLastDay();
 
     Collection<Post> findPostLastDay();

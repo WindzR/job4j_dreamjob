@@ -60,7 +60,15 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <label>Москва</label>
+                                    <c:if test="${candidate.cityId == 4}">
+                                        <label>Нижний Новгород</label>
+                                    </c:if>
+                                    <c:if test="${candidate.cityId == 6}">
+                                        <label>Казань</label>
+                                    </c:if>
+                                    <c:if test="${candidate.cityId == 7}">
+                                        <label>Уфа</label>
+                                    </c:if>
                                 </td>
                             </tr>
                         </c:forEach>

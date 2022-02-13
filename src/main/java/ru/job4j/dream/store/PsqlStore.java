@@ -120,7 +120,7 @@ public class PsqlStore implements Store {
             try (ResultSet it = ps.executeQuery()) {
                 while (it.next()) {
                     cities.add(new City(
-                            it.getInt("id"), it.getString("name")
+                            it.getInt("id"), it.getString("city")
                     ));
                 }
             }
@@ -128,6 +128,27 @@ public class PsqlStore implements Store {
             LOG.error("Exception in findAllCities method", e);
         }
         return cities;
+    }
+
+    @Override
+    public City findCityById(int id) {
+        City city = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM cities WHERE id=(?)")
+        ) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.next()) {
+                    city = new City(
+                            resultSet.getInt("id"),
+                            resultSet.getString("city")
+                    );
+                }
+            }
+        } catch (Exception e) {
+            LOG.error("Exception in findCandidateById method", e);
+        }
+        return city;
     }
 
     @Override

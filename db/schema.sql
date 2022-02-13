@@ -46,3 +46,8 @@ INSERT INTO cities (city) VALUES ('Красноярск');
 INSERT INTO cities (city) VALUES ('Пермь');
 INSERT INTO cities (city) VALUES ('Воронеж');
 INSERT INTO cities (city) VALUES ('Волгоград');
+
+
+INSERT INTO candidates (id, name, city_id, created) VALUES (1, 'Кот Матроскин', 4, '2021-09-27 23:00:00');
+INSERT INTO candidates (id, name, city_id, created) VALUES (2, 'Пес Шарик', 6, '2021-10-27 21:00:00');
+INSERT INTO candidates (id, name, city_id, created) VALUES (3, 'Почтальон Печкин', 7, '2021-11-08 21:00:00');

@@ -113,6 +113,11 @@ public class MemStore implements Store {
     }
 
     @Override
+    public City findCityById(int id) {
+        return null;
+    }
+
+    @Override
     public Collection<Candidate> findCandidatesLastDay() {
         return null;
     }

@@ -32,6 +32,24 @@
             }
         }
     </script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                crossdomain: true,
+                url: 'http://localhost:8080/dream_job/cities',
+                dataType: 'json'
+            }).done(function (data) {
+                for (var city of data) {
+                    $('#inputCity option:last-child').after(
+                        '<option>' + city.name + '</option>'
+                    );
+                }
+            }).fail(function (err) {
+                console.log(err);
+            });
+        });
+    </script>
 
     <title>Биржа вакансий</title>
 </head>
@@ -50,12 +68,11 @@
                     </div>
                     <div class="form-group">
                         <label for="inputCity">Выберите город :</label>
-                        <select id="city" class="form-control">
-                            <option selected>Ваш город...</option>
-                            <option>Москва</option>
-                            <option>Санкт-Петербург</option>
-                            <option>Нижний Новгород</option>
-                            <option>Казань</option>
+                        <select id="inputCity" class="form-control">
+                            <option selected>Выберите город...</option>
+                            <c:forEach items="${cities}" var="city">
+                                <option>${city.name}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="form-group">
